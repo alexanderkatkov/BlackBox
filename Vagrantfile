@@ -5,6 +5,12 @@
 Vagrant.require_version ">= 1.8.0"
 VAGRANTFILE_API_VERSION = "2"
 
+# Require YAML module
+require 'yaml'
+
+# Read YAML file with box configuration
+vmconfig = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
+
 Vagrant.configure("2") do |config|
   # Latest Ubuntu 16.04 LTS Box
   config.vm.box = "bento/ubuntu-16.04"
@@ -16,7 +22,9 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: vmconfig["ip"]
+  # Hostname for main ip
+  config.vm.hostname = vmconfig["domain"]
 
   # Forwarding port for MySQL host connections
   config.vm.network "forwarded_port", guest: 3306, host: 3306
@@ -41,10 +49,10 @@ Vagrant.configure("2") do |config|
     vb.gui = false
 
     # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = vmconfig["memory"]
 
     # Customize the number of CPUs using by VM
-    vb.cpus = 2
+    vb.cpus = vmconfig["cpu"]
   end
 
   # Enable provisioning with a shell script. Additional provisioners such as
