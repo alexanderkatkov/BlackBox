@@ -2,6 +2,9 @@
 .idea/
 .vagrant/
 html/
-public
+public/
+host1.dev/
+host2.dev/
+host3.dev/
 
 # Files

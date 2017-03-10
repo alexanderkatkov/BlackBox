@@ -9,13 +9,13 @@ ip: 192.168.33.12
 hosts:
   -
     url: host1.dev
-    path: public/subpath1
+    path: '/'
   -
     url: host2.dev
-    path: public/subpath2
+    path: public
   -
     url: host3.dev
-    path: public/subpath3
+    path: public
 
 # VIRTUALBOX CONFIG
 # ---------------------------------------------------

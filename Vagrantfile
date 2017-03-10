@@ -11,6 +11,11 @@ require 'yaml'
 # Read YAML file with box configuration
 vmconfig = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
 hosts = vmconfig['hosts']
+# Caching hosts for hostupdater
+hostupdater_hosts = []
+hosts.each do |host|
+  hostupdater_hosts << host['url']
+end
 
 Vagrant.configure("2") do |config|
   # Latest Ubuntu 16.04 LTS Box
@@ -24,8 +29,10 @@ Vagrant.configure("2") do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: vmconfig["ip"]
-  # Hostname for main ip
+  # Hostname for main IP
   config.vm.hostname = vmconfig["domain"]
+  # Creating virtual hosts with hostupdater
+  config.hostsupdater.aliases = hostupdater_hosts 
 
   # Forwarding port for MySQL host connections
   config.vm.network "forwarded_port", guest: 3306, host: 3306
@@ -56,16 +63,17 @@ Vagrant.configure("2") do |config|
     vb.cpus = vmconfig["cpu"]
   end
 
+  # Apache2 provision
+  config.vm.provision :shell, path: "scripts/intro.sh"
+
+  # Apache2 provision
+  config.vm.provision :shell, path: "scripts/apache2.sh"
+
   # Creating & configuring VHOSTS for Apache2
   hosts.each do |host|
     url = host['url']
     path = host['path']
     config.vm.provision :shell, path: "scripts/hosts.sh", :args => [url, path]
   end
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-  # config.vm.provision :shell, path: "scripts/bootstrap.sh", :args => [hosts]
-  # config.vm.provision "shell", inline: <<-SHELL
-  # SHELL
+  
 end
