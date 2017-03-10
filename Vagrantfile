@@ -10,6 +10,7 @@ require 'yaml'
 
 # Read YAML file with box configuration
 vmconfig = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
+hosts = vmconfig['hosts']
 
 Vagrant.configure("2") do |config|
   # Latest Ubuntu 16.04 LTS Box
@@ -55,11 +56,16 @@ Vagrant.configure("2") do |config|
     vb.cpus = vmconfig["cpu"]
   end
 
+  # Creating & configuring VHOSTS for Apache2
+  hosts.each do |host|
+    url = host['url']
+    path = host['path']
+    config.vm.provision :shell, path: "scripts/hosts.sh", :args => [url, path]
+  end
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  # config.vm.provision :shell, path: "scripts/bootstrap.sh", :args => [hosts]
   # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
   # SHELL
 end

@@ -7,15 +7,15 @@ domain: blackbox.dev
 ip: 192.168.33.12
 # List of virtual hosts
 hosts:
-  host1:
+  -
     url: host1.dev
     path: public/subpath1
-  host2:
+  -
     url: host2.dev
     path: public/subpath2
-  host3:
-      url: host3.dev
-      path: public/subpath3
+  -
+    url: host3.dev
+    path: public/subpath3
 
 # VIRTUALBOX CONFIG
 # ---------------------------------------------------
