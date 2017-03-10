@@ -2,7 +2,7 @@
 #
 # BlackBox intro provision file
 
-echo $'\n' 
+echo $'\n'
 echo "---------------------------------------------"
 echo "Welcome to BlackBox"
 echo "---------------------------------------------"

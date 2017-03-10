@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
   # Hostname for main IP
   config.vm.hostname = vmconfig["domain"]
   # Creating virtual hosts with hostupdater
-  config.hostsupdater.aliases = hostupdater_hosts 
+  config.hostsupdater.aliases = hostupdater_hosts
 
   # Forwarding port for MySQL host connections
   config.vm.network "forwarded_port", guest: 3306, host: 3306
@@ -63,11 +63,14 @@ Vagrant.configure("2") do |config|
     vb.cpus = vmconfig["cpu"]
   end
 
-  # Apache2 provision
+  # Intro message
   config.vm.provision :shell, path: "scripts/intro.sh"
-
+	# Update system & packages
+  config.vm.provision :shell, path: "scripts/update.sh"
   # Apache2 provision
   config.vm.provision :shell, path: "scripts/apache2.sh"
+	# VHosts provision for Apache2
+  config.vm.provision :shell, path: "scripts/hosts.sh"
 
   # Creating & configuring VHOSTS for Apache2
   hosts.each do |host|
@@ -75,5 +78,5 @@ Vagrant.configure("2") do |config|
     path = host['path']
     config.vm.provision :shell, path: "scripts/hosts.sh", :args => [url, path]
   end
-  
+
 end
