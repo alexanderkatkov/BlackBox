@@ -5,6 +5,13 @@
 Vagrant.require_version ">= 1.8.0"
 VAGRANTFILE_API_VERSION = "2"
 
+# Require YAML module
+require 'yaml'
+
+# Read YAML file with box configuration
+vmconfig = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
+hosts = vmconfig['hosts']
+
 Vagrant.configure("2") do |config|
   # Latest Ubuntu 16.04 LTS Box
   config.vm.box = "bento/ubuntu-16.04"
@@ -16,7 +23,9 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: vmconfig["ip"]
+  # Hostname for main ip
+  config.vm.hostname = vmconfig["domain"]
 
   # Forwarding port for MySQL host connections
   config.vm.network "forwarded_port", guest: 3306, host: 3306
@@ -41,17 +50,22 @@ Vagrant.configure("2") do |config|
     vb.gui = false
 
     # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = vmconfig["memory"]
 
     # Customize the number of CPUs using by VM
-    vb.cpus = 2
+    vb.cpus = vmconfig["cpu"]
   end
 
+  # Creating & configuring VHOSTS for Apache2
+  hosts.each do |host|
+    url = host['url']
+    path = host['path']
+    config.vm.provision :shell, path: "scripts/hosts.sh", :args => [url, path]
+  end
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  # config.vm.provision :shell, path: "scripts/bootstrap.sh", :args => [hosts]
   # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
   # SHELL
 end

@@ -1,0 +1,23 @@
+# Configuration for WPDistillery executed by setup.sh & used in .vagrantfile
+
+# HOSTS
+# ---------------------------------------------------
+# Private VM IP
+domain: blackbox.dev
+ip: 192.168.33.12
+# List of virtual hosts
+hosts:
+  -
+    url: host1.dev
+    path: public/subpath1
+  -
+    url: host2.dev
+    path: public/subpath2
+  -
+    url: host3.dev
+    path: public/subpath3
+
+# VIRTUALBOX CONFIG
+# ---------------------------------------------------
+cpu: 2
+memory: 1024
