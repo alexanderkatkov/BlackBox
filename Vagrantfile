@@ -63,12 +63,16 @@ Vagrant.configure("2") do |config|
     vb.cpus = vmconfig["cpu"]
   end
 
+	ip = vmconfig["ip"]
+
   # Intro message
   config.vm.provision :shell, path: "scripts/intro.sh"
 	# Update system & packages
   config.vm.provision :shell, path: "scripts/update.sh"
   # Apache2 provision
   config.vm.provision :shell, path: "scripts/apache2.sh"
+	# Server packages installation & configuration
+  config.vm.provision :shell, path: "scripts/server-packages.sh", :args => [ip]
 	# VHosts provision for Apache2
   config.vm.provision :shell, path: "scripts/hosts.sh"
 
