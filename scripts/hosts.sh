@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 #
 # Apache2 provision file
-# vhost url from config.yml
-URL=$1
-# vhost subdirectory from config.yml
-DIR=$2
 
 echo $'\n'
 echo "---------------------------------------------"
@@ -12,8 +8,15 @@ echo "Creating virtual host for ${URL}"
 echo "---------------------------------------------"
 echo "Creating directory for ${URL}..."
 echo $'\n'
-# Creating .conf file name
+
+# Variables
+# vhost url from config.yml
+URL=$1
+# vhost subdirectory from config.yml
+DIR=$2
+# .conf file name
 vhost_file="${URL}.conf"
+
 # Creating VHosts
 if [ ! -f $vhost_file ]; then
 
@@ -21,7 +24,7 @@ if [ ! -f $vhost_file ]; then
 
     echo "Creating ${vhost_file}..."
 
-    cat <<EOF > /etc/apache2/sites-available/${vhost_file}
+    sudo cat <<EOF > /etc/apache2/sites-available/${vhost_file}
     <VirtualHost *:80>
         ServerName ${URL}
         ServerAlias www.${URL}

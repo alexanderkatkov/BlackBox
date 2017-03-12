@@ -8,7 +8,7 @@ echo "System & packages silent update."
 echo "---------------------------------------------"
 echo $'\n'
 # Updating & upgrading packages
-#
+
 # Update repository list
 sudo apt update -y
 # Upgrade packages with suspending GRUB configuration modal
