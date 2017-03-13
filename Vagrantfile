@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
   # Intro message
   config.vm.provision :shell, path: "scripts/intro.sh"
 	# Update system & packages
-  config.vm.provision :shell, path: "scripts/update.sh"
+  # config.vm.provision :shell, path: "scripts/update.sh"
   # Apache2 provision
   config.vm.provision :shell, path: "scripts/apache2.sh"
 	# Server packages installation & configuration
