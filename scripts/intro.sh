@@ -4,7 +4,7 @@
 
 echo $'\n'
 echo "---------------------------------------------"
-echo "Welcome to BlackBox"
+echo "Welcome to BlackBox."
 echo "---------------------------------------------"
-echo $'Starting provision ... \n'
+echo "Starting provision ..."
 echo $'\n'

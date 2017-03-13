@@ -1,10 +1,11 @@
-# Folders list
+# Folders list ##########
 .idea/
 .vagrant/
+# Test folders
 html/
 public/
 host1.dev/
 host2.dev/
 host3.dev/
 
-# Files
+# Files ##########
