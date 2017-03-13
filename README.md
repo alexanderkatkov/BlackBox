@@ -1,2 +1,2 @@
-# BlackBox v0.7.2
+# BlackBox v0.7.3
 Vagrant LAMP stack configuration.
