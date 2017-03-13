@@ -73,6 +73,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "scripts/apache2.sh"
 	# Server packages installation & configuration
   config.vm.provision :shell, path: "scripts/server-packages.sh", :args => [ip]
+  # Database packages installation & configuration
+  config.vm.provision :shell, path: "scripts/database-packages.sh"
 	# VHosts provision for Apache2
   config.vm.provision :shell, path: "scripts/hosts.sh"
 
