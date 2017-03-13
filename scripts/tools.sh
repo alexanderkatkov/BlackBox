@@ -9,7 +9,8 @@ echo "---------------------------------------------"
 echo $'\n'
 
 # Install 'zip' & 'unzip' packages
-if [ command -v zip >/dev/null 2>&1 ]; then
+if type zip &> /dev/null
+then
 	echo "Zip & Unzip is already installed!"
 else
 	echo "Installing Zip & Unzip..."
@@ -18,7 +19,8 @@ else
 fi
 
 # Install 'Composer' package
-if [ command -v composer >/dev/null 2>&1 ]; then
+if type composer &> /dev/null
+then
 	echo "Composer is already installed!"
 else
 	echo "Installing Composer..."
@@ -33,7 +35,8 @@ else
 fi
 
 # Install 'Ruby' package
-if [ command -v ruby >/dev/null 2>&1 ]; then
+if type ruby &> /dev/null
+then
 	echo "Ruby is already installed!"
 else
 	echo "Installing Ruby..."
@@ -49,7 +52,8 @@ else
 fi
 
 # Install 'Mailhog' package
-if [ command mailhog status service >/dev/null 2>&1 ]; then
+if type mailhog &> /dev/null
+then
 	echo "Mailhog is already installed!"
 else
 	echo "Installing Mailhog..."
@@ -78,7 +82,8 @@ EOL
 fi
 
 # Install 'Git' package
-if [ command --version git >/dev/null 2>&1 ]; then
+if type git &> /dev/null
+then
 	echo "Git is already installed!"
 else
 	echo "Installing Git..."
@@ -87,7 +92,8 @@ else
 fi
 
 # Install 'WP CLI' package
-if [ command --version wp >/dev/null 2>&1 ]; then
+if type wp &> /dev/null
+then
 	echo "WP CLI is already installed!"
 else
 	echo "Installing WP CLI..."
@@ -101,7 +107,8 @@ else
 fi
 
 # Install 'WP CLI' package
-if [ command --version node >/dev/null 2>&1 ]; then
+if type node &> /dev/null
+then
 	echo "Node.js is already installed!"
 else
 	echo "Installing Node.js..."
