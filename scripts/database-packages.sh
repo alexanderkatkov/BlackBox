@@ -8,7 +8,8 @@ echo "Database packages provision."
 echo "---------------------------------------------"
 echo $'\n'
 
-if [ command --version mysql >/dev/null 2>&1 ]; then
+if type mysql &> /dev/null
+then
 	echo "MySQL is already installed!"
 else
 	echo "Installing MySQL..."
@@ -37,7 +38,8 @@ else
 fi
 
 
-if [ command --version sqlite3 >/dev/null 2>&1 ]; then
+if type sqlite3 &> /dev/null
+then
 	echo "SQLite is already installed!"
 else
 	echo "Installing SQLite..."

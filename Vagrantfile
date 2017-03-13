@@ -80,8 +80,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "scripts/database-packages.sh"
   # Development Tools installation & configuration
   config.vm.provision :shell, path: "scripts/tools.sh"
-	# VHosts provision for Apache2
-  config.vm.provision :shell, path: "scripts/hosts.sh"
 
   # Creating & configuring VHOSTS for Apache2 if not empty hosts array
   if Array(hosts).length != 0

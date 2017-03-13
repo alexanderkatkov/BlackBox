@@ -10,7 +10,8 @@ echo $'\n'
 
 # Checking if Apache2 is already installed
 echo "Checking if Apache2 is installed..."
-if [ command -v apache2 >/dev/null 2>&1 ]; then
+if type apache2 &> /dev/null
+then
   echo "Apache2 already installed!"
 else
   echo "Installing Apache2..."

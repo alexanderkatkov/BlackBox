@@ -10,7 +10,8 @@ echo $'\n'
 
 ip=$1
 
-if [ command --version redis-server >/dev/null 2>&1 ]; then
+if type redis-server &> /dev/null
+then
 	echo "Redis-server already installed!"
 else
 	echo "Installing Redis-server..."
@@ -22,7 +23,8 @@ else
 	sudo apt install -y redis-server
 fi
 
-if [ command -v php >/dev/null 2>&1 ]; then
+if type php &> /dev/null
+then
 	echo "PHP 7.0 already installed!"
 else
 	echo "Installing PHP 7.0..."
