@@ -10,11 +10,11 @@ ip: 192.168.33.10
 # List of virtual hosts
 hosts:
   # -
-  #   url: testhost1.dev
+  #   url: example-nopath.dev
   #   path: '/'
   # -
-  #   url: testhost2.dev
-  #   path: public
+  #   url: example-subpath.dev
+  #   path: path/subpath
 
 # VIRTUALBOX CONFIG
 # ---------------------------------------------------
