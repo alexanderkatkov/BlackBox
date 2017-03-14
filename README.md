@@ -1,4 +1,4 @@
-# BlackBox v0.8.3
+# BlackBox v0.9.3
 
 Vagrant LAMP stack provision script, based on [LTS bento/ubuntu-16.04](https://atlas.hashicorp.com/bento/boxes/ubuntu-16.04).
 Supports multiply virtual hosts & host directory configuration.
@@ -60,3 +60,8 @@ Default username & password - **root**
 * MySQL Server Port: 3306
 * Username: root
 * Password: root
+
+### xDebug settings
+
+* IDE Key: XDEBUG
+* Protocol: DBGp
