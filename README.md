@@ -22,17 +22,14 @@ Supports multiply virtual hosts & host directory configuration.
 
 - Install [VirtualBox](https://www.virtualbox.org/)
 - Install [Vagrant](https://www.vagrantup.com/)
-- Clone **BlackBox** repository
-```
+- Clone **BlackBox** repository ```
 git clone https://github.com/alexanderkatkov/blackbox.git path_to_project_folder
 ```
 - Set box **Domain** & **IP** in config.yml
 - Set additional **virtual hosts** in config.yml if needed
-- Run
-```
+- Run ```
 vagrant up
-```
-in console
+``` in console
 
 ## Configuration & Usage
 
