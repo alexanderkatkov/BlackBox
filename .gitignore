@@ -7,5 +7,7 @@ public/
 host1.dev/
 host2.dev/
 host3.dev/
+example-nopath.dev/
+example-subpath.dev/
 
 # Files ##########

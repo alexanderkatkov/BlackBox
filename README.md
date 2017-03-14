@@ -1,4 +1,4 @@
-# BlackBox v0.9.3
+# BlackBox v1.0.0
 
 Vagrant LAMP stack provision script, based on [LTS bento/ubuntu-16.04](https://atlas.hashicorp.com/bento/boxes/ubuntu-16.04).
 Supports multiply virtual hosts & host directory configuration.
@@ -65,3 +65,6 @@ Default username & password - **root**
 
 * IDE Key: XDEBUG
 * Protocol: DBGp
+
+### MailHog Access
+To see emails catched by MailHog go to URL: **{box-ip}:8025**
