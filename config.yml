@@ -1,23 +1,20 @@
-# Configuration for BlackBox executed by used in .vagrantfile
+# Configuration for BlackBox used in .vagrantfile
 
 # HOSTS
 # ---------------------------------------------------
 # VM domain
 domain: blackbox.dev
 # Private VM IP
-ip: 192.168.33.12
+ip: 192.168.33.10
 
 # List of virtual hosts
 hosts:
-  -
-    url: host1.dev
-    path: '/'
-  -
-    url: host2.dev
-    path: public
-  -
-    url: host3.dev
-    path: public
+  # -
+  #   url: testhost1.dev
+  #   path: '/'
+  # -
+  #   url: testhost2.dev
+  #   path: public
 
 # VIRTUALBOX CONFIG
 # ---------------------------------------------------
