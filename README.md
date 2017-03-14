@@ -1,4 +1,4 @@
-# BlackBox v0.9.3
+# BlackBox v0.9.4
 
 Vagrant LAMP stack provision script, based on [LTS bento/ubuntu-16.04](https://atlas.hashicorp.com/bento/boxes/ubuntu-16.04).
 Supports multiply virtual hosts & host directory configuration.
