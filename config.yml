@@ -1,10 +1,12 @@
-# Configuration for WPDistillery executed by setup.sh & used in .vagrantfile
+# Configuration for BlackBox executed by used in .vagrantfile
 
 # HOSTS
 # ---------------------------------------------------
-# Private VM IP
+# VM domain
 domain: blackbox.dev
+# Private VM IP
 ip: 192.168.33.12
+
 # List of virtual hosts
 hosts:
   -

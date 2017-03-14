@@ -10,11 +10,14 @@ require 'yaml'
 
 # Read YAML file with box configuration
 vmconfig = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
+hosts = []
 hosts = vmconfig['hosts']
-# Caching hosts for hostupdater
-hostupdater_hosts = []
-hosts.each do |host|
-  hostupdater_hosts << host['url']
+# Caching hosts for hostupdater if hosts are not empty
+if Array(hosts).length != 0
+  hostupdater_hosts = []
+  hosts.each do |host|
+    hostupdater_hosts << host['url']
+  end
 end
 
 Vagrant.configure("2") do |config|
@@ -77,14 +80,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "scripts/database-packages.sh"
   # Development Tools installation & configuration
   config.vm.provision :shell, path: "scripts/tools.sh"
-	# VHosts provision for Apache2
-  config.vm.provision :shell, path: "scripts/hosts.sh"
 
-  # Creating & configuring VHOSTS for Apache2
-  hosts.each do |host|
-    url = host['url']
-    path = host['path']
-    config.vm.provision :shell, path: "scripts/hosts.sh", :args => [url, path]
+  # Creating & configuring VHOSTS for Apache2 if not empty hosts array
+  if Array(hosts).length != 0
+    hosts.each do |host|
+      url = host['url']
+      path = host['path']
+      config.vm.provision :shell, path: "scripts/hosts.sh", :args => [url, path]
+    end
   end
-
 end
