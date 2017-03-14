@@ -4,9 +4,8 @@
 
 echo $'\n'
 echo "---------------------------------------------"
-echo "Creating virtual host for ${URL}"
+echo "Provisioning virtual host for ${1}"
 echo "---------------------------------------------"
-echo "Creating directory for ${URL}..."
 echo $'\n'
 
 # Variables
@@ -18,7 +17,7 @@ DIR=$2
 vhost_file="${URL}.conf"
 
 # Creating VHosts
-if [ ! -f $vhost_file ]; then
+if ! test -f "/etc/apache2/sites-available/${vhost_file}"; then
 
     sudo mkdir -p /var/www/${URL}/html/${DIR}
 
