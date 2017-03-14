@@ -22,17 +22,23 @@ Supports multiply virtual hosts & host directory configuration.
 
 - Install [VirtualBox](https://www.virtualbox.org/)
 - Install [Vagrant](https://www.vagrantup.com/)
-- Clone **BlackBox** repository ```
+- Clone **BlackBox** repository
+```
 git clone https://github.com/alexanderkatkov/blackbox.git path_to_project_folder
 ```
 - Set box **Domain** & **IP** in config.yml
 - Set additional **virtual hosts** in config.yml if needed
-- Run ```vagrant up``` in console
+- Run
+```
+vagrant up
+```
+in console
 
 ## Configuration & Usage
 
 ### How to Create Additional Virtual Hosts
 Open File **config.yml** in editor. Add additional vhosts in hosts section as listed below.
+
 ```yaml
 # List of virtual hosts
 hosts:
@@ -45,7 +51,6 @@ hosts:
   -
     url: host3.dev
     path: public
-		...
 ```
 
 ### Connecting to MySQL database from the
