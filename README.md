@@ -67,4 +67,4 @@ Default username & password - **root**
 * Protocol: DBGp
 
 ### MailHog Access
-To se email catched by MailHog go to URL: **{box-ip}:8025**
+To see emails catched by MailHog go to URL: **{box-ip}:8025**
