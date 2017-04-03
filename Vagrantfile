@@ -49,10 +49,13 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=666"]
+  config.vm.synced_folder ".", "/var/www", id: "vagrant-root",
+    owner: "vagrant",
+    group: "www-data",
+    mount_options: ["dmode=775,fmode=664"]
 
   # Optional NFS. Make sure to remove other synced_folder line too
-  config.vm.synced_folder ".", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=666"] }
+  # config.vm.synced_folder ".", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=666"] }
 
   # Configuration for VirtualBox:
   config.vm.provider "virtualbox" do |vb|
