@@ -42,6 +42,8 @@ else
 	# Enable PHP 7.0 FPM in Apache2
 	sudo a2enmod proxy proxy_fcgi setenvif
 	sudo a2enconf php7.0-fpm
+	# Enable Apache 2 mod_rewrite module
+	sudo a2enmod rewrite
 	# Reload Apache2 & PHP-FPM to activate configuration
 	sudo service php7.0-fpm restart
 	sudo service apache2 restart
