@@ -25,8 +25,10 @@ if ! test -f "/etc/apache2/sites-available/${vhost_file}"; then
 
     sudo cat <<EOF > /etc/apache2/sites-available/${vhost_file}
     <VirtualHost *:80>
+        ServerAdmin admin@${URL}
         ServerName ${URL}
         ServerAlias www.${URL}
+        RewriteEngine On
 
         DocumentRoot /var/www/${URL}/html/${DIR}
 
