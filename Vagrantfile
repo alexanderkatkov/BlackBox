@@ -21,8 +21,8 @@ if Array(hosts).length != 0
 end
 
 Vagrant.configure("2") do |config|
-  # Latest Ubuntu 16.04 LTS Box
-  config.vm.box = "bento/ubuntu-16.04"
+  # Latest Ubuntu 14.04.5 LTS Box
+  config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
