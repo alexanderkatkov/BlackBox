@@ -1,6 +1,6 @@
-# BlackBox v1.0.3
+# BlackBox v2.0.0
 
-Vagrant LAMP stack provision script, based on [LTS bento/ubuntu-16.04](https://atlas.hashicorp.com/bento/boxes/ubuntu-16.04).
+Vagrant LAMP stack provision script, based on [LTS trusty/ubuntu-14.04](https://app.vagrantup.com/ubuntu/boxes/trusty64).
 Supports multiply virtual hosts & host directory configuration.
 
 ## Included packages
@@ -36,13 +36,13 @@ Open File **config.yml** in editor. Add additional vhosts in hosts section as li
 # List of virtual hosts
 hosts:
   -
-    url: host1.dev
+    url: host1.app
     path: '/'
   -
-    url: host2.dev
+    url: host2.app
     path: public
   -
-    url: host3.dev
+    url: host3.app
     path: public
 ```
 
