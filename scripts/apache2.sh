@@ -16,4 +16,12 @@ then
 else
   echo "Installing Apache2..."
   sudo apt-get install -y apache2
+
+  # [www] folder rights permanent fix
+
+  # Set common rights for [www] folder
+  sudo chown -R www-data:www-data /var/www
+  sudo chmod -R 775 /var/www
+  # Add user account to www-data group
+  sudo adduser $USER www-data
 fi
