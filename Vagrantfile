@@ -69,7 +69,8 @@ Vagrant.configure("2") do |config|
     vb.cpus = vmconfig["cpu"]
   end
 
-	ip = vmconfig["ip"]
+  ip = vmconfig["ip"]
+  mysql_root_pw = vmconfig["mysql_root_pw"]
 
   # Intro message
   config.vm.provision :shell, path: "scripts/intro.sh"
@@ -80,7 +81,7 @@ Vagrant.configure("2") do |config|
 	# Server packages installation & configuration
   config.vm.provision :shell, path: "scripts/server-packages.sh", :args => [ip]
   # Database packages installation & configuration
-  config.vm.provision :shell, path: "scripts/database-packages.sh"
+  config.vm.provision :shell, path: "scripts/database-packages.sh", :args => [mysql_root_pw]
   # Development Tools installation & configuration
   config.vm.provision :shell, path: "scripts/tools.sh"
 

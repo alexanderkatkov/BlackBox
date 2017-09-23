@@ -16,13 +16,19 @@ then
 else
 	echo "Installing MySQL..."
 	# Adding actual repository for 'MySQL'
-	sudo add-apt-repository -y ppa:ondrej/mysql-5.7
+	sudo wget http://dev.mysql.com/get/mysql-apt-config_0.8.7-1_all.deb
+	# Install MySQL releases package
+	sudo DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.7-1_all.deb
 	# Update repository list
-	sudo apt update -y
+	sudo apt-get update -y
 	# Set root password for MySQL
-	debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-	debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-	sudo apt install -y mysql-server mysql-client
+	pass="root"
+	sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $pass"
+	sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $pass"
+	sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password $pass"
+	sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password $pass"
+	# Installing MySQL client & server
+	DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server mysql-client
 	echo "Configuring MySQL..."
 	# Configure MySQL default charset to real utf8
 	sudo sed -i '/\[client\]/a default-character-set = utf8mb4' /etc/mysql/my.cnf
