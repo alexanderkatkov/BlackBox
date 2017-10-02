@@ -57,28 +57,27 @@ if type mailhog &> /dev/null
 then
 	echo "Mailhog is already installed!"
 else
-	echo "Installing Mailhog..."
+	echo "Installing Mailhog"
+
 	# Download binary from github
-	sudo wget --quiet -O /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64
+	wget --quiet -O ~/mailhog https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64
+
 	# Make it executable
-	sudo chmod +x /usr/local/bin/mailhog
+	chmod +x ~/mailhog
+
 	# Make it start on reboot
-	sudo tee /etc/systemd/system/mailhog.service <<EOL
-	[Unit]
-	Description=Mailhog
-	After=network.target
-	[Service]
-	User=vagrant
-	ExecStart=/usr/bin/env /usr/local/bin/mailhog > /dev/null 2>&1 &
-	[Install]
-	WantedBy=multi-user.target
+	sudo tee /etc/init/mailhog.conf <<EOL
+	description "Mailhog"
+	start on runlevel [2345]
+	stop on runlevel [!2345]
+	respawn
+	pre-start script
+		exec su - vagrant -c "/usr/bin/env ~/mailhog > /dev/null 2>&1 &"
+	end script
 EOL
-	# Reload systemd files before enabling mailhog
-	sudo systemctl daemon-reload
-	# Start on reboot
-	sudo systemctl enable mailhog
-	# Start background service now
-	sudo systemctl start mailhog
+
+	# Start it now in the background
+	sudo service mailhog start
 fi
 
 # Checking if Git is already installed
