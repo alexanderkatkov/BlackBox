@@ -1,6 +1,7 @@
 # Folders list ##########
 .idea/
 .vagrant/
+.vscode/
 # Test folders
 html/
 public/
