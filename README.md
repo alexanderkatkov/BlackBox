@@ -1,4 +1,4 @@
-# BlackBox v2.2.4
+# BlackBox v2.2.5
 
 Vagrant LAMP stack provision script, based on [LTS trusty/ubuntu-14.04](https://app.vagrantup.com/ubuntu/boxes/trusty64).
 Supports multiply virtual hosts & host directory configuration.
@@ -64,7 +64,19 @@ Default username & password - **root**
 ### xDebug settings
 
 * IDE Key: XDEBUG
-* Protocol: DBGp
+* Port: 9000
+
+#### launch.json for VS Code
+```json
+{
+	"name": "XDEBUG",
+	"type": "php",
+	"request": "launch",
+	"port": 9000,
+	"localSourceRoot": "${workspaceRoot}/",
+	"serverSourceRoot": "/var/www/"
+}
+```
 
 ### MailHog Access
 To see emails catched by MailHog go to URL: **{box-ip}:8025**
