@@ -1,11 +1,11 @@
-# BlackBox v2.0.2
+# BlackBox v2.1.2
 
 Vagrant LAMP stack provision script, based on [LTS trusty/ubuntu-14.04](https://app.vagrantup.com/ubuntu/boxes/trusty64).
 Supports multiply virtual hosts & host directory configuration.
 
 ## Included packages
 	01. Apache2
-	02. PHP 7.0 with xDebug
+	02. PHP 7.1 with xDebug
 	03. MySQL 5.7 Server & Client
 	04. Redis
 	05. SQLite3
