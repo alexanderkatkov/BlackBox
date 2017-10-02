@@ -10,6 +10,9 @@ echo $'\n'
 
 ip=$1
 
+# Install service for email sending
+sudo apt-get install -y sendmail
+
 # Checking if Redis-server is already installed
 echo "Checking if Redis-server is installed..."
 if type redis-server &> /dev/null
