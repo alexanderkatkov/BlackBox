@@ -24,4 +24,9 @@ else
   sudo chmod -R 775 /var/www
   # Add user account to www-data group
   sudo adduser $USER www-data
+
+  #	Customization of HTTP request and response headers support
+  sudo a2enmod headers
+  # Restart Apache2 to activate configuration
+  sudo service apache2 restart
 fi
