@@ -113,16 +113,12 @@ then
 else
 	echo "Installing Node.js..."
 	# Download installation
-	curl --quiet -O -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+	sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 	# Installing Node.js package
 	sudo apt-get install -y nodejs
+	sudo apt-get install -y build-essential
 	sudo ln -s /usr/bin/nodejs /usr/bin/node
 	# Installing NPM package manager
-	sudo apt install -y npm
-	npm install npm@latest -g
-	# Installing base Node.js packages
-	# Gulp
-	npm i -g gulp
-	# Bower
-	npm i -g bower
+	sudo apt-get install -y npm
+	sudo npm install npm@latest -g
 fi
