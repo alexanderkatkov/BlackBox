@@ -23,9 +23,9 @@ else
 	# Adding actual repository for 'Redis-server'
 	sudo add-apt-repository -y ppa:chris-lea/redis-server
 	# Update repository list
-	sudo apt update -y
+	sudo apt-get update -y
 	# Install 'Redis-server'
-	sudo apt install -y redis-server
+	sudo apt-get install -y redis-server
 fi
 
 # Checking if PHP 7.1 is already installed
@@ -38,9 +38,9 @@ else
 	# Adding actual repository for 'PHP'
 	sudo add-apt-repository -y ppa:ondrej/php
 	# Update repository list
-	sudo apt update -y
+	sudo apt-get update -y
 	# Install PHP packages
-	sudo apt install -y php-cli \
+	sudo apt-get install -y php-cli \
 	php-mysql php-pgsql php-sqlite3 php-gd php-apcu \
 	php-mcrypt php-gmp php-curl \
 	php-imap php-memcached \

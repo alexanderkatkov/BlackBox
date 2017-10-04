@@ -10,6 +10,6 @@ echo $'\n'
 # Updating & upgrading packages
 
 # Update repository list
-sudo apt update -y
+sudo apt-get update -y
 # Upgrade packages with suspending GRUB configuration modal
-sudo DEBIAN_FRONTEND=noninteractive apt -y -o DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" upgrade
