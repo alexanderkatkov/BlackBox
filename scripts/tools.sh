@@ -15,7 +15,7 @@ then
 	echo "Zip & Unzip is already installed!"
 else
 	echo "Installing Zip & Unzip..."
-	sudo apt -y install zip unzip
+	sudo apt-get -y install zip unzip
 fi
 
 # Checking if Composer is already installed
@@ -46,9 +46,9 @@ else
 	# Update repository list
 	sudo apt-get update -y
 	# Install 'Ruby'
-	sudo apt install -y ruby
+	sudo apt-get install -y ruby
 	# Install 'Ruby Dev'. Needed for building Ruby packages
-	sudo apt install -y ruby-dev
+	sudo apt-get install -y ruby-dev
 fi
 
 # Checking if Mailhog is already installed
@@ -87,7 +87,7 @@ then
 	echo "Git is already installed!"
 else
 	echo "Installing Git..."
-	sudo apt install -y git
+	sudo apt-get install -y git
 fi
 
 # Checking if WP CLI is already installed
