@@ -1,4 +1,4 @@
-# BlackBox v2.2.5
+# BlackBox v2.2.7
 
 Vagrant LAMP stack provision script, based on [LTS trusty/ubuntu-14.04](https://app.vagrantup.com/ubuntu/boxes/trusty64).
 Supports multiply virtual hosts & host directory configuration.
