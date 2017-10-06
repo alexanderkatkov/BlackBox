@@ -3,7 +3,7 @@
 # HOSTS
 # ---------------------------------------------------
 # VM domain
-domain: blackbox.dev
+domain: blackbox.app
 # Private VM IP
 ip: 192.168.33.10
 
@@ -13,10 +13,10 @@ mysql_root_pw: "root"
 # List of virtual hosts
 hosts:
   -
-    url: 'example-nopath.dev'
+    url: 'example-nopath.app'
     path: '/'
   -
-    url: 'example-subpath.dev'
+    url: 'example-subpath.app'
     path: path/subpath
 
 # VIRTUALBOX CONFIG
