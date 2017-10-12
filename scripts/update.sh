@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 #
-# System silent update file
-
-echo $'\n'
-echo "---------------------------------------------"
-echo "System & packages silent update."
-echo "---------------------------------------------"
-echo $'\n'
-# Updating & upgrading packages
+# Updating repository list & upgrading packages
+echo ">>> System & packages update."
 
 # Update repository list
-sudo apt-get update -y
-# Upgrade packages with suspending GRUB configuration modal
+sudo apt-get -y update
+# Upgrade packages with suspending GRUB configuration request
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" upgrade
+# Removing unnecessary packages
+sudo apt-get autoremove -y

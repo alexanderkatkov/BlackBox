@@ -21,7 +21,7 @@ if Array(hosts).length != 0
 end
 
 Vagrant.configure("2") do |config|
-  # Latest Ubuntu 14.04.5 LTS Box
+  # Latest Ubuntu 16.04.3 LTS Box
   config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
@@ -39,6 +39,8 @@ Vagrant.configure("2") do |config|
 
   # Forwarding port for MySQL host connections
   config.vm.network "forwarded_port", guest: 3306, host: 3306
+  # Forwarding port for MailHog admin
+  config.vm.network "forwarded_port", guest: 8025, host: 8025
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -50,6 +52,11 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder ".", "/var/www", id: "vagrant-root",
+    owner: "vagrant",
+    group: "www-data",
+    mount_options: ["dmode=775,fmode=664"]
+
+  config.vm.synced_folder "./log", "/var/log", id: "server-logs",
     owner: "vagrant",
     group: "www-data",
     mount_options: ["dmode=775,fmode=664"]
@@ -72,25 +79,39 @@ Vagrant.configure("2") do |config|
   ip = vmconfig["ip"]
   mysql_root_pw = vmconfig["mysql_root_pw"]
 
-  # Intro message
-  config.vm.provision :shell, path: "scripts/intro.sh"
-	# Update system & packages
+  # -----------------------------------------------------------
+  # BASE
+  # -----------------------------------------------------------
   config.vm.provision :shell, path: "scripts/update.sh"
-  # Apache2 provision
-  config.vm.provision :shell, path: "scripts/apache2.sh"
-	# Server packages installation & configuration
-  config.vm.provision :shell, path: "scripts/server-packages.sh", :args => [ip]
-  # Database packages installation & configuration
-  config.vm.provision :shell, path: "scripts/database-packages.sh", :args => [mysql_root_pw]
-  # Development Tools installation & configuration
-  config.vm.provision :shell, path: "scripts/tools.sh"
-
+  config.vm.provision :shell, path: "scripts/base.sh"
+  # -----------------------------------------------------------
+  # SERVER
+  # -----------------------------------------------------------
+  config.vm.provision :shell, path: "scripts/server/apache2.sh"
+  config.vm.provision :shell, path: "scripts/server/php.sh"
+  config.vm.provision :shell, path: "scripts/server/nodejs.sh", privileged: false
+  # -----------------------------------------------------------
+  # DATABASE
+  # -----------------------------------------------------------
+  config.vm.provision :shell, path: "scripts/database/mysql.sh", :args => [mysql_root_pw]
+  config.vm.provision :shell, path: "scripts/database/sqlite.sh"
+  # -----------------------------------------------------------
+  # TOOLS
+  # -----------------------------------------------------------
+  config.vm.provision :shell, path: "scripts/tools/ruby.sh"
+  config.vm.provision :shell, path: "scripts/tools/composer.sh"
+  config.vm.provision :shell, path: "scripts/tools/wp-cli.sh"
+  config.vm.provision :shell, path: "scripts/tools/mailhog.sh", privileged: false
+  # -----------------------------------------------------------
+  # VHOSTS
+  # -----------------------------------------------------------
   # Creating & configuring VHOSTS for Apache2 if not empty hosts array
   if Array(hosts).length != 0
     hosts.each do |host|
       url = host['url']
       path = host['path']
-      config.vm.provision :shell, path: "scripts/hosts.sh", :args => [url, path]
+      config.vm.provision :shell, path: "scripts/vhosts/vhost_create.sh", :args => [url, path]
+      config.vm.provision :shell, path: "scripts/vhosts/vhost_enable.sh", :args => [url]
     end
   end
 end

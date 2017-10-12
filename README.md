@@ -1,22 +1,19 @@
-# BlackBox v2.2.7
+# BlackBox v2.0.0
 
-Vagrant LAMP stack provision script, based on [LTS trusty/ubuntu-14.04](https://app.vagrantup.com/ubuntu/boxes/trusty64).
+Vagrant LAMP stack provision script, based on [LTS ubuntu/trusty64](https://app.vagrantup.com/ubuntu/boxes/trusty64).
 Supports multiply virtual hosts & host directory configuration.
 
 ## Included packages
 	01. Apache2
-	02. PHP 7.1 with xDebug
-	03. MySQL 5.7 Server & Client
-	04. Redis
+	02. PHP 7.1 FPM with xDebug
+	03. Node.js 6.11 LTS
+	04. MySQL 5.5 Server & Client
 	05. SQLite3
-	06. Ruby & Ruby Dev
-	07. Git
-	08. Composer
-	09. Mailhog for Web and API based SMTP testing
-	10. WP CLI
-	11. Node.js 7.x
-	12. Gulp
-	13. Bower
+	06. Composer
+	07. Mailhog for Web and API based SMTP testing
+	08. WP CLI
+	09. Git
+	10. Ruby
 
 ## Installation process
 
@@ -40,18 +37,18 @@ hosts:
     path: '/'
   -
     url: host2.app
-    path: public
+    path: subpath1/subpath2
   -
     url: host3.app
     path: public
 ```
 
 ### Connecting to MySQL database from the
-No PhpMyAdmin is installed inside guest machine, so you can manage you databases from outside using MySQL Workbench, Navicat or similar.
+No PhpMyAdmin is installed inside guest machine, but you can manage you databases from outside using MySQL Workbench, Navicat or similar.
 
-Default username & password - **root**
+Default MySQL username & password - **root**
 
-#### Settings
+#### Settings for MysQL remote connection
 * Connection Method: Standard TCP/IP over SSH
 * SSH Hostname: 127.0.0.1:2222
 * Username: vagrant
@@ -62,7 +59,6 @@ Default username & password - **root**
 * Password: root
 
 ### xDebug settings
-
 * IDE Key: XDEBUG
 * Port: 9000
 
