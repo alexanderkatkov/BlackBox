@@ -14,10 +14,10 @@ mysql_root_pw: "root"
 hosts:
   -
     url: 'example-nopath.app'
-    path: '/'
+    path: ''
   -
     url: 'example-subpath.app'
-    path: path/subpath
+    path: 'path/subpath'
 
 # VIRTUALBOX CONFIG
 # ---------------------------------------------------
