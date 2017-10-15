@@ -8,7 +8,7 @@ root_pw=$1
 
 # MySQL package provision
 echo "==> Checking if MySQL is installed..."
-if type php &> /dev/null
+if type mysql &> /dev/null
 then
 echo "==> MySQL already installed!"
 else
