@@ -17,22 +17,18 @@ sudo apt-get -y update
 
 echo "==> Installing PHP..."
 # Install PHP packages
-sudo apt-get -y install php-fpm php-cli \
+sudo apt-get -y install php-cli php-common \
 php-mysql php-pgsql php-sqlite3 php-gd php-apcu \
 php-mcrypt php-gmp php-curl \
 php-imap php-memcached \
 php-imagick php-intl php-xdebug \
 php-json php-mbstring \
-php-zip php-xml php-mysql php-pear \
-libapache2-mod-fastcgi
+php-zip php-xml php-pear
 
-echo "==> Switching to FPM/FastCGI..."
-# Enable PHP FPM in Apache2
-sudo a2enmod proxy proxy_fcgi setenvif
-sudo a2enconf php7.1-fpm
+# PHP module for the Apache 2 webserver
+sudo apt-get -y install libapache2-mod-php
 
-# Reload Apache2 & PHP-FPM to activate configuration
-sudo service php7.1-fpm restart
+# Reload Apache2 to activate configuration
 sudo service apache2 restart
 
 # Switching to @root user
@@ -41,7 +37,7 @@ sudo su
 # Writing xDebug configuration
 echo "==> Writing xDebug configuration..."
 # Saving path to php.ini for later use
-php_config="/etc/php/7.1/fpm/php.ini"
+php_config="/etc/php/7.1/apache2/php.ini"
 # Writing xDebug config to the end of php.ini file
 sudo echo "; xdebug-remote
 xdebug.remote_enable=On
@@ -64,7 +60,6 @@ sed -i 's/html_errors = Off/html_errors = On/g' $php_config
 # Switching back to @vagrant user
 su vagrant
 
-# Reload Apache2 & PHP-FPM to activate configuration
+# Reload Apache2 to activate configuration
 sudo service apache2 restart
-sudo service php7.1-fpm restart
 fi
