@@ -2,8 +2,10 @@
 
 Vagrant LAMP stack provision script, based on [LTS ubuntu/trusty64](https://app.vagrantup.com/ubuntu/boxes/trusty64).
 Supports multiply virtual hosts & host directory configuration.
+Projects are stored into the **apps/** folder.
 
 ## Included packages
+
 	01. Apache2
 	02. PHP 7.1 with xDebug
 	03. Node.js 6.11 LTS
@@ -47,6 +49,7 @@ hosts:
 No PhpMyAdmin is installed inside guest machine, but you can manage you databases from outside using MySQL Workbench, Navicat or similar.
 
 Default MySQL username & password - **root**
+MySQL **@root password** can be changed in config.yml
 
 #### Settings for MysQL remote connection
 * Connection Method: Standard TCP/IP over SSH
@@ -69,7 +72,7 @@ Default MySQL username & password - **root**
 	"type": "php",
 	"request": "launch",
 	"port": 9000,
-	"localSourceRoot": "${workspaceRoot}/",
+	"localSourceRoot": "${workspaceRoot}/apps/",
 	"serverSourceRoot": "/var/www/"
 }
 ```
