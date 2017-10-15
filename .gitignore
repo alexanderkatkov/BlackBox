@@ -4,6 +4,7 @@
 .vscode/
 # Test folders
 html/
+apps/
 public/
 host1.dev/
 host2.dev/
