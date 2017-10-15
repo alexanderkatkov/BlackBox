@@ -5,7 +5,7 @@ Supports multiply virtual hosts & host directory configuration.
 
 ## Included packages
 	01. Apache2
-	02. PHP 7.1 FPM with xDebug
+	02. PHP 7.1 with xDebug
 	03. Node.js 6.11 LTS
 	04. MySQL 5.5 Server & Client
 	05. SQLite3

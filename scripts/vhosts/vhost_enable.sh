@@ -16,7 +16,6 @@ else
 echo "==> Enabling ${URL}..."
 # Enable .conf file
 sudo a2ensite ${vhost_file}
-# Reload Apache2 & PHP-FPM to activate configuration
+# Reload Apache2 to activate configuration
 sudo service apache2 restart
-sudo service php7.1-fpm restart
 fi
