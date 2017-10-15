@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# Composer provision file
-echo ">>> Composer installation & configuration"
+# WP-CLI provision file
+echo ">>> WP-CLI installation & configuration"
 
 # Mailhog package provision
 echo "==> Checking if WP-CLI is installed..."
