@@ -82,26 +82,26 @@ Vagrant.configure("2") do |config|
   # -----------------------------------------------------------
   # BASE
   # -----------------------------------------------------------
-  config.vm.provision :shell, path: "scripts/update.sh"
-  config.vm.provision :shell, path: "scripts/base.sh"
+  config.vm.provision :shell, path: "provision/update.sh"
+  config.vm.provision :shell, path: "provision/base.sh"
   # -----------------------------------------------------------
   # SERVER
   # -----------------------------------------------------------
-  config.vm.provision :shell, path: "scripts/server/apache2.sh"
-  config.vm.provision :shell, path: "scripts/server/php.sh"
-  # config.vm.provision :shell, path: "scripts/server/nodejs.sh", privileged: false
+  config.vm.provision :shell, path: "provision/server/apache2.sh"
+  config.vm.provision :shell, path: "provision/server/php.sh"
+  config.vm.provision :shell, path: "provision/server/nodejs.sh", privileged: false
   # -----------------------------------------------------------
   # DATABASE
   # -----------------------------------------------------------
-  # config.vm.provision :shell, path: "scripts/database/mysql.sh", :args => [mysql_root_pw]
-  # config.vm.provision :shell, path: "scripts/database/sqlite.sh"
+  config.vm.provision :shell, path: "provision/database/mysql.sh", :args => [mysql_root_pw]
+  config.vm.provision :shell, path: "provision/database/sqlite.sh"
   # -----------------------------------------------------------
   # TOOLS
   # -----------------------------------------------------------
-  # config.vm.provision :shell, path: "scripts/tools/ruby.sh"
-  # config.vm.provision :shell, path: "scripts/tools/composer.sh"
-  # config.vm.provision :shell, path: "scripts/tools/wp-cli.sh"
-  # config.vm.provision :shell, path: "scripts/tools/mailhog.sh", privileged: false
+  config.vm.provision :shell, path: "provision/tools/ruby.sh"
+  config.vm.provision :shell, path: "provision/tools/composer.sh"
+  config.vm.provision :shell, path: "provision/tools/wp-cli.sh"
+  config.vm.provision :shell, path: "provision/tools/mailhog.sh", privileged: false
   # -----------------------------------------------------------
   # VHOSTS
   # -----------------------------------------------------------
@@ -110,8 +110,8 @@ Vagrant.configure("2") do |config|
     hosts.each do |host|
       url = host['url']
       path = host['path']
-      config.vm.provision :shell, path: "scripts/vhosts/vhost_create.sh", :args => [url, path]
-      config.vm.provision :shell, path: "scripts/vhosts/vhost_enable.sh", :args => [url]
+      config.vm.provision :shell, path: "provision/vhosts/vhost_create.sh", :args => [url, path]
+      config.vm.provision :shell, path: "provision/vhosts/vhost_enable.sh", :args => [url]
     end
   end
 end
