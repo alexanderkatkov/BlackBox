@@ -1,6 +1,7 @@
 # Folders list ##########
 .idea/
 .vagrant/
+.vscode/
 # Test folders
 html/
 public/
@@ -9,5 +10,11 @@ host2.dev/
 host3.dev/
 example-nopath.dev/
 example-subpath.dev/
+example-nopath.app/
+example-subpath.app/
+
 
 # Files ##########
+log/***/*.*
+apps/***/*.*
+!*.gitkeep

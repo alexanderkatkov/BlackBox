@@ -1,22 +1,21 @@
-# BlackBox v1.0.3
+# BlackBox v2.0.0
 
-Vagrant LAMP stack provision script, based on [LTS bento/ubuntu-16.04](https://atlas.hashicorp.com/bento/boxes/ubuntu-16.04).
+Vagrant LAMP stack provision script, based on [LTS ubuntu/trusty64](https://app.vagrantup.com/ubuntu/boxes/trusty64).
 Supports multiply virtual hosts & host directory configuration.
+Projects are stored into the **apps/** folder.
 
 ## Included packages
+
 	01. Apache2
-	02. PHP 7.0 with xDebug
-	03. MySQL 5.7 Server & Client
-	04. Redis
+	02. PHP 7.1 with xDebug
+	03. Node.js 6.11 LTS
+	04. MySQL 5.5 Server & Client
 	05. SQLite3
-	06. Ruby & Ruby Dev
-	07. Git
-	08. Composer
-	09. Mailhog for Web and API based SMTP testing
-	10. WP CLI
-	11. Node.js 7.x
-	12. Gulp
-	13. Bower
+	06. Composer
+	07. Mailhog for Web and API based SMTP testing
+	08. WP CLI
+	09. Git
+	10. Ruby
 
 ## Installation process
 
@@ -36,22 +35,23 @@ Open File **config.yml** in editor. Add additional vhosts in hosts section as li
 # List of virtual hosts
 hosts:
   -
-    url: host1.dev
+    url: host1.app
     path: '/'
   -
-    url: host2.dev
-    path: public
+    url: host2.app
+    path: subpath1/subpath2
   -
-    url: host3.dev
+    url: host3.app
     path: public
 ```
 
 ### Connecting to MySQL database from the
-No PhpMyAdmin is installed inside guest machine, so you can manage you databases from outside using MySQL Workbench, Navicat or similar.
+No PhpMyAdmin is installed inside guest machine, but you can manage you databases from outside using MySQL Workbench, Navicat or similar.
 
-Default username & password - **root**
+Default MySQL username & password - **root**
+MySQL **@root password** can be changed in config.yml
 
-#### Settings
+#### Settings for MysQL remote connection
 * Connection Method: Standard TCP/IP over SSH
 * SSH Hostname: 127.0.0.1:2222
 * Username: vagrant
@@ -62,9 +62,20 @@ Default username & password - **root**
 * Password: root
 
 ### xDebug settings
-
 * IDE Key: XDEBUG
-* Protocol: DBGp
+* Port: 9000
+
+#### launch.json for VS Code
+```json
+{
+	"name": "XDEBUG",
+	"type": "php",
+	"request": "launch",
+	"port": 9000,
+	"localSourceRoot": "${workspaceRoot}/apps/",
+	"serverSourceRoot": "/var/www/"
+}
+```
 
 ### MailHog Access
 To see emails catched by MailHog go to URL: **{box-ip}:8025**
