@@ -5,7 +5,7 @@ echo ">>> Ruby installation & configuration"
 
 # Mailhog package provision
 echo "==> Checking if Ruby is installed..."
-if type mailhog &> /dev/null
+if type ruby &> /dev/null
 then
 echo "==> Ruby already installed!"
 else
