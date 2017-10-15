@@ -49,7 +49,7 @@ hosts:
 No PhpMyAdmin is installed inside guest machine, but you can manage you databases from outside using MySQL Workbench, Navicat or similar.
 
 Default MySQL username & password - **root**
-MySQL @root password can be changed in config.yml
+MySQL **@root password** can be changed in config.yml
 
 #### Settings for MysQL remote connection
 * Connection Method: Standard TCP/IP over SSH
