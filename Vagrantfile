@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder ".", "/var/www", id: "vagrant-root",
+  config.vm.synced_folder "./apps", "/var/www", id: "vagrant-root",
     owner: "vagrant",
     group: "www-data",
     mount_options: ["dmode=775,fmode=664"]
@@ -89,19 +89,19 @@ Vagrant.configure("2") do |config|
   # -----------------------------------------------------------
   config.vm.provision :shell, path: "scripts/server/apache2.sh"
   config.vm.provision :shell, path: "scripts/server/php.sh"
-  config.vm.provision :shell, path: "scripts/server/nodejs.sh", privileged: false
+  # config.vm.provision :shell, path: "scripts/server/nodejs.sh", privileged: false
   # -----------------------------------------------------------
   # DATABASE
   # -----------------------------------------------------------
-  config.vm.provision :shell, path: "scripts/database/mysql.sh", :args => [mysql_root_pw]
-  config.vm.provision :shell, path: "scripts/database/sqlite.sh"
+  # config.vm.provision :shell, path: "scripts/database/mysql.sh", :args => [mysql_root_pw]
+  # config.vm.provision :shell, path: "scripts/database/sqlite.sh"
   # -----------------------------------------------------------
   # TOOLS
   # -----------------------------------------------------------
-  config.vm.provision :shell, path: "scripts/tools/ruby.sh"
-  config.vm.provision :shell, path: "scripts/tools/composer.sh"
-  config.vm.provision :shell, path: "scripts/tools/wp-cli.sh"
-  config.vm.provision :shell, path: "scripts/tools/mailhog.sh", privileged: false
+  # config.vm.provision :shell, path: "scripts/tools/ruby.sh"
+  # config.vm.provision :shell, path: "scripts/tools/composer.sh"
+  # config.vm.provision :shell, path: "scripts/tools/wp-cli.sh"
+  # config.vm.provision :shell, path: "scripts/tools/mailhog.sh", privileged: false
   # -----------------------------------------------------------
   # VHOSTS
   # -----------------------------------------------------------
