@@ -5,7 +5,7 @@ echo ">>> Composer installation & configuration"
 
 # Mailhog package provision
 echo "==> Checking if Composer is installed..."
-if type mailhog &> /dev/null
+if type composer &> /dev/null
 then
 echo "==> Composer already installed!"
 else
