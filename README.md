@@ -69,7 +69,7 @@ Default MySQL username & password - **root**
 	"type": "php",
 	"request": "launch",
 	"port": 9000,
-	"localSourceRoot": "${workspaceRoot}/",
+	"localSourceRoot": "${workspaceRoot}/apps/",
 	"serverSourceRoot": "/var/www/"
 }
 ```
